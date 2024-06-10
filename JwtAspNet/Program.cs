@@ -8,4 +8,7 @@ var app = builder.Build();
 app.MapGet("/", (TokenService service) 
     => service.Create());
 
+
+
 app.Run();
+    
