@@ -4,7 +4,12 @@ using JwtAspNet.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<TokenService>();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapGet("/", (TokenService service) 
     => 
@@ -16,9 +21,7 @@ app.MapGet("/", (TokenService service)
         "https>//hugovictordev.com.br", 
         "XYXZ",
         new[]{ "student","premium"});
-        
-   return service.Create(user);
-    
+   return service.Create(user);  
 });
 
 
